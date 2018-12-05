@@ -8,14 +8,16 @@ class BookList
 {
 private:
     Book *lastBook;
-    void addToEmptyList(Book *);
+    Book* addToEmptyList(Book *);
+    BookList search(int , int flag);
+    BookList search(QString , int flag);
 public:
     BookList();
-    void addAfter(Book * , Book *);
-    void addEnd(Book *);
-    void addBegin(Book *);
-    void remove(Book *);
-    Book* search(String , String);
+    Book* addAfter(Book * , Book *);
+    Book* addEnd(Book *);
+    Book* addBegin(Book *);
+    Book* remove(Book *);
+    BookList find(QString , QString , int , int);
 
 
 };
