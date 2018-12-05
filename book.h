@@ -1,17 +1,20 @@
 #ifndef BOOK_H
 #define BOOK_H
 
+#include<QString>
+
 class Book
 {
 private:
-    string author, title;
+    QString author, title;
     int publishYear;
     int price;
     Book *next;
 public:
-    Book(string , string , int , int);
-    string getAuthor();
-    string getTitle();
+    Book(QString , QString , int , int);
+    Book(Book*);
+    QString getAuthor();
+    QString getTitle();
     int getPublishYear();
     int getPrice();
     Book* getNext();
