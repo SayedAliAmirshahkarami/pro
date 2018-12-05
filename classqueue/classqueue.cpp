@@ -1,17 +1,16 @@
 #include "classcustomer.cpp"
 #include <iostream>
 using namespace std;
-
 class Queue{
 private:
   Persion *front,*rear;
   int maxSize , size;
 public:
   Queue(int maxSize);
-  void push_rear(int value);
-  int pop_front();
+  void push_rear(Persion);
+  Persion* pop_front();
   void display();
-  bool hasValue(int value); //for search we use this
+  bool hasValue(string name); //for search we use this
   bool isFull();
 };
 
@@ -41,10 +40,10 @@ void Queue::push_rear(Persion persion1){
    size++;
    Persion *temp = new Persion();
    temp->SetName(persion1.GetName());
-   temp->setNext(NULL);
+   temp->SetNext(NULL);
 
    if(front){
-      rear->setNext(temp);
+      rear->SetNext(temp);
    }
    else{
      front = temp;
@@ -56,19 +55,19 @@ void Queue::push_rear(Persion persion1){
 //**********************************************************************************
 
 
-int Queue::pop_front(){
+Persion* Queue::pop_front(){
   if(front == NULL){
     cout<<"queue is empty"<<endl;
-    return INT_MIN;
+   // return 0;
   }
   size--;
-  int value = front->getData();
-  front = front->GetName();
+  string name1 = front->GetName();
+  front = front->GetNext();
 
   if(front == NULL){
     rear = NULL;
   }
-  return value;
+  return front;
 }
 
 //*******************************************************************************
@@ -93,15 +92,12 @@ void Queue::display(){
     }
     cout<<"Elements in Queue are:\n";
     Persion *persion = front;
-    while(persion{
-        cout<<persion->GetName()<<" ";
-        Persion = Persion->GetNext();
+    while(persion){
+        cout<<persion->GetName()<<endl;
+        persion = persion->GetNext();
     }
     cout<<endl;
 }
 
 //*****************************************************************************************
-
-
-
 
