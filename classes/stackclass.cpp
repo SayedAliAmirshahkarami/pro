@@ -1,8 +1,28 @@
-#include "book.h"
+//#include "book.h"
 #include <iostream>
 using namespace std;
+#define max_size 5000
+#define MAX 5000
+class Book
+{
+private:
+    string author, title;
+    int publishYear;
+    int price;
+    Book *next;
+public:
+    Book(string , string , int , int);
+    Book();
+    Book(Book*);
+    string getAuthor();
+    string getTitle();
+    int getPublishYear();
+    int getPrice();
+    Book* getNext();
+    void setNext(Book *);
+};
 
-Book::Book(QString author, QString title , int publishYear , int price){
+Book::Book(string author, string title , int publishYear , int price){
     this->author = author;
     this->title = title;
     this->publishYear = publishYear;
@@ -16,11 +36,11 @@ Book::Book(Book *copyBook){
     this->price = copyBook->getPrice();
 }
 
-QString Book::getAuthor(){
+string Book::getAuthor(){
     return author;
 }
 
-QString Book::getTitle(){
+string Book::getTitle(){
     return title;
 }
 
@@ -43,82 +63,60 @@ void Book::setNext(Book *nextBook){
 
 
 //*************************************************************************************************************
+//*******************************************************************************************
+//*************************************************************************************
+//***************************************************************************************
 
+ 
+class Stack 
+{ 
+    int top; 
+public: 
+    Book books[max_size];    //Maximum size of Stack 
+  
+    Stack()  { top = -1; } 
+    bool push(Book); 
+    Book pop(); 
+    bool isEmpty(); 
+}; 
+  
+bool Stack::push(Book book1) 
+{ 
+    if (top >= (MAX-1)) 
+    { 
+        cout << "Stack Overflow"; 
+        return false; 
+    } 
+    else
+    { 
+    
+        books[++top] = book1; 
+        //cout<<x <<" pushed into stack\n"; 
+        return true; 
+    } 
+} 
+  
+Book Stack::pop() 
+{ 
+    if (top < 0) 
+    { 
+        cout << "Stack Underflow"; 
+     //   return ; 
+    } 
+    else
+    { 
+        Book book1 = books[top--]; 
+        
+        return book1; 
+    } 
+} 
+  
+bool Stack::isEmpty() 
+{ 
+    return (top < 0); 
+} 
+  
 
-
-class Stack{
-private:
-  Node *top , *bottom;
-public:
-  Stack();
-  void push_top(int* array , int size);
-  int* pop_top();
-  void display();
-};
-
-Stack::Stack(){
-  top = NULL;
-  bottom = NULL;
-}
-
-
-void Stack::push_top(int* array , int size){
-
-  Node *node = new Node(size);
-  node->setArray(array , size);
-  node->setNext(NULL);
-
-  if(bottom){
-    top->setNext(node);
-  }
-  else{
-    bottom = node;
-  }
-  top = node;
-
-}
-
-int* Stack::pop_top(){
-  if(bottom == NULL){
-    cout<<"stack is empty"<<endl;
-    return NULL;
-  }
-
-  int *arr = new int(top->getArraySize());
-  for(int i = 0;i < top->getArraySize();i++){
-    arr[i] = top->getArray()[i];
-  }
-  Node *node = bottom;
-  if(top == bottom){
-    top = NULL;
-    bottom = NULL;
-    return arr;
-  }
-
-  while(node->getNext() != top){
-      node = node->getNext();
-  }
-  node->setNext(NULL);
-  top = node;
-  return arr;
-}
-
-void Stack::display(){
-  if(bottom == NULL){
-    cout<<"stack is empty"<<endl;
-    return;
-  }
-  Node *node = bottom;
-  while(node){
-
-    for(int i = 0;i < node->getArraySize();i++){
-       cout<<node->getArray()[i]<<" ";
-    }
-    node = node->getNext();
-    cout<<endl;
-  }
-  cout<<endl;
-}
 
 
 //**************************************************************************************************************
@@ -126,6 +124,26 @@ void Stack::display(){
 
 
 int main(){
+	
+	Stack stack1;
+	cout<<"enter the charactrecotr of the book "<<endl;
+	cout<<"please enter the 1-the author  2-title 3-RYLTIME 4-PRICE"<<endl;
+	string author,title;
+	
+	int price,RYLTIME;
+	for(int i=0;i<3;i++){
+	
+	cin>>author>>title>>RYLTIME>>price;
+	Book book1(author,title,RYLTIME,price);
+	stack1.push(book1);
+	
+}
+
+for(int i=0;i<3;i++){
+	Book book1=stack1.pop();
+	cout<<book1.getAuthor()<<"book ----> "<<endl;
+	
+}
 	
 	
 	
