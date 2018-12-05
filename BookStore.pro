@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp\
-        backuplibrary.cpp \
     book.cpp \
     booklist.cpp
 
