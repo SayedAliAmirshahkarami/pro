@@ -17,7 +17,7 @@ public:
     Book* addEnd(Book *);
     Book* addBegin(Book *);
     Book* remove(Book *);
-    BookList find(QString , QString , int , int);
+    BookList* find(QString , QString , int , int);
 
 
 };
