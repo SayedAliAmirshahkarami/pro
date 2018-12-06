@@ -1,4 +1,4 @@
-#-------------------------------------------------
+ #-------------------------------------------------
 #
 # Project created by QtCreator 2018-12-01T18:24:59
 #
@@ -14,14 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp\
-    book.cpp \
-    booklist.cpp \
+    bookClasses/book.cpp \
+    bookClasses/booklist.cpp \
     customerwindow.cpp \
     acountantwindow.cpp
 
 HEADERS  += mainwindow.h \
-    book.h \
-    booklist.h \
+    bookClasses/book.h \
+    bookClasses/booklist.h \
     customerwindow.h \
     acountantwindow.h
 
