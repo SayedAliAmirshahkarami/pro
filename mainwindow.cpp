@@ -12,3 +12,17 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_accountantEnter_pbtn_clicked()
+{
+   this->close();
+   AcountantWindow *acountantWindow = new AcountantWindow;
+   acountantWindow->showNormal();
+}
+
+void MainWindow::on_customerEnter_pbtn_clicked()
+{
+    this->close();
+    CustomerWindow *customerWindow = new CustomerWindow;
+    customerWindow->showNormal();
+}

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QFile>
+#include "customerwindow.h"
+#include "acountantwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +18,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     
+private slots:
+    void on_accountantEnter_pbtn_clicked();
+
+    void on_customerEnter_pbtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

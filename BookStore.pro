@@ -16,12 +16,15 @@ SOURCES += main.cpp\
         mainwindow.cpp\
     book.cpp \
     booklist.cpp \
-    customerwindow.cpp
+    customerwindow.cpp \
+    acountantwindow.cpp
 
 HEADERS  += mainwindow.h \
     book.h \
     booklist.h \
-    customerwindow.h
+    customerwindow.h \
+    acountantwindow.h
 
 FORMS    += mainwindow.ui \
-    customerwindow.ui
+    customerwindow.ui \
+    acountantwindow.ui
