@@ -23,6 +23,6 @@ void MainWindow::on_accountantEnter_pbtn_clicked()
 void MainWindow::on_customerEnter_pbtn_clicked()
 {
     this->close();
-    CustomerWindow *customerWindow = new CustomerWindow;
-    customerWindow->showNormal();
+    CustomerEnterWindow *customerEnterWindow = new CustomerEnterWindow;
+    customerEnterWindow->showNormal();
 }

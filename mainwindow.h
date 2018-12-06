@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <QFile>
-#include "customerwindow.h"
-#include "acountantwindow.h"
+#include "uiClasses/customerenterwindow.h"
+#include "uiClasses/acountantwindow.h"
 
 namespace Ui {
 class MainWindow;
