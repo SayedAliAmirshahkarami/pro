@@ -13,18 +13,18 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp\
+        uiClasses/mainwindow.cpp\
     bookClasses/book.cpp \
     bookClasses/booklist.cpp \
-    customerwindow.cpp \
-    acountantwindow.cpp
+    uiClasses/customerwindow.cpp \
+    uiClasses/acountantwindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += uiClasses/mainwindow.h \
     bookClasses/book.h \
     bookClasses/booklist.h \
-    customerwindow.h \
-    acountantwindow.h
+    uiClasses/customerwindow.h \
+    uiClasses/acountantwindow.h
 
-FORMS    += mainwindow.ui \
-    customerwindow.ui \
-    acountantwindow.ui
+FORMS    += uiClasses/mainwindow.ui \
+    uiClasses/customerwindow.ui \
+    uiClasses/acountantwindow.ui
