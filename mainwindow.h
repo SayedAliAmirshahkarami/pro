@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QFile>
 #include "uiClasses/customerenterwindow.h"
-#include "uiClasses/acountantwindow.h"
+#include "uiClasses/acountantenterwindow.h"
 #include <QIcon>
 
 namespace Ui {

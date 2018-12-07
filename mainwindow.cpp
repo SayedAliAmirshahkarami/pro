@@ -19,8 +19,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_accountantEnter_pbtn_clicked()
 {
    this->close();
-   AcountantWindow *acountantWindow = new AcountantWindow;
-   acountantWindow->showNormal();
+   AcountantEnterWindow *acountantEnterWindow = new AcountantEnterWindow;
+   acountantEnterWindow->showNormal();
 }
 
 void MainWindow::on_customerEnter_pbtn_clicked()

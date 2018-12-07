@@ -18,16 +18,19 @@ SOURCES += main.cpp\
     bookClasses/booklist.cpp \
     uiClasses/customerwindow.cpp \
     uiClasses/acountantwindow.cpp \
-    uiClasses/customerenterwindow.cpp
+    uiClasses/customerenterwindow.cpp \
+    uiClasses/acountantenterwindow.cpp
 
 HEADERS  += mainwindow.h \
     bookClasses/book.h \
     bookClasses/booklist.h \
     uiClasses/customerwindow.h \
     uiClasses/acountantwindow.h \
-    uiClasses/customerenterwindow.h
+    uiClasses/customerenterwindow.h \
+    uiClasses/acountantenterwindow.h
 
 FORMS    += mainwindow.ui \
     uiClasses/customerwindow.ui \
     uiClasses/acountantwindow.ui \
-    uiClasses/customerenterwindow.ui
+    uiClasses/customerenterwindow.ui \
+    uiClasses/acountantenterwindow.ui
