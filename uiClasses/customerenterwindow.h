@@ -5,6 +5,10 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
+#include <QChar>
+#include "customerwindow.h"
+#include "../mainwindow.h"
 
 namespace Ui {
 class CustomerEnterWindow;
@@ -21,8 +25,12 @@ public:
 private slots:
     void on_enter_btn_clicked();
 
+    void on_back_btn_clicked();
+
 private:
     Ui::CustomerEnterWindow *ui;
 };
 
 #endif // CUSTOMERENTERWINDOW_H
+
+

@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->customerEnter_pbtn->setIcon(QIcon("../pro1/pics/customer_3.png"));
+    ui->accountantEnter_pbtn->setIcon(QIcon("../pro1/pics/acountant_2.png"));
 }
 
 MainWindow::~MainWindow()
@@ -26,3 +29,5 @@ void MainWindow::on_customerEnter_pbtn_clicked()
     CustomerEnterWindow *customerEnterWindow = new CustomerEnterWindow;
     customerEnterWindow->showNormal();
 }
+
+

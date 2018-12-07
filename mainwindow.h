@@ -5,6 +5,7 @@
 #include <QFile>
 #include "uiClasses/customerenterwindow.h"
 #include "uiClasses/acountantwindow.h"
+#include <QIcon>
 
 namespace Ui {
 class MainWindow;

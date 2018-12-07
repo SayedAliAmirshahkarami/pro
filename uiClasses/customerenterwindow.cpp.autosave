@@ -19,7 +19,7 @@ CustomerEnterWindow::~CustomerEnterWindow()
 void CustomerEnterWindow::on_enter_btn_clicked()
 {
      QString nameStr = ui->name_lineEdit->text();
-
+    
     int i;
     for(i = 0;i < nameStr.size() && nameStr.at(i) == ' ';i++);
     nameStr.remove(0,i);

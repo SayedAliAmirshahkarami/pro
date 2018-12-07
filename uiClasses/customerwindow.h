@@ -2,6 +2,7 @@
 #define CUSTOMERWINDOW_H
 
 #include <QMainWindow>
+#include "customerenterwindow.h"
 
 namespace Ui {
 class CustomerWindow;
@@ -15,6 +16,9 @@ public:
     explicit CustomerWindow(QWidget *parent = 0);
     ~CustomerWindow();
     
+private slots:
+    void on_back_btn_clicked();
+
 private:
     Ui::CustomerWindow *ui;
 };
