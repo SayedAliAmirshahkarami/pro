@@ -8,6 +8,7 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->addBook_btn->setIcon(QIcon("../pro1/pics/addBook.png"));
+
 }
 
 AcountantWindow::~AcountantWindow()
