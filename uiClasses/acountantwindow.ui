@@ -48,10 +48,10 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>570</x>
       <y>10</y>
-      <width>401</width>
-      <height>231</height>
+      <width>211</width>
+      <height>211</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -60,38 +60,11 @@
     <property name="frameShadow">
      <enum>QFrame::Sunken</enum>
     </property>
-    <widget class="QLabel" name="addBookReply_label">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>210</x>
-       <y>10</y>
-       <width>181</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>8</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(170, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QWidget" name="">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>70</y>
+       <x>10</x>
+       <y>50</y>
        <width>191</width>
        <height>156</height>
       </rect>
@@ -216,212 +189,34 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="widget" native="true">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>201</width>
-       <height>131</height>
-      </rect>
-     </property>
-     <widget class="QWidget" name="layoutWidget_4">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>179</width>
-        <height>113</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="preBook_verticalLayout">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <widget class="QLineEdit" name="title_lineEdit_2"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="title_label_2">
-           <property name="font">
-            <font>
-             <family>Berlin Sans FB</family>
-             <pointsize>12</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string> نام کتاب</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <widget class="QLineEdit" name="author_lineEdit_2"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="author_label_2">
-           <property name="font">
-            <font>
-             <family>Berlin Sans FB</family>
-             <pointsize>12</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>نام نویسنده</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <widget class="QLineEdit" name="publishYear_lineEdit_2"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="publishYear_label_2">
-           <property name="font">
-            <font>
-             <family>Berlin Sans FB</family>
-             <pointsize>12</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>سال انتشار</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QLineEdit" name="price_lineEdit_2"/>
-         </item>
-         <item>
-          <widget class="QLabel" name="price_label_2">
-           <property name="font">
-            <font>
-             <family>Berlin Sans FB</family>
-             <pointsize>12</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>قیمت</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="">
+    <widget class="QLabel" name="addBookReply_label">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>132</y>
-       <width>181</width>
-       <height>91</height>
+       <y>0</y>
+       <width>191</width>
+       <height>41</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QRadioButton" name="radioButton_3">
-        <property name="font">
-         <font>
-          <family>Bell MT</family>
-          <pointsize>11</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(71, 55, 42);</string>
-        </property>
-        <property name="text">
-         <string>اضافه کردن بعد از یک کتاب</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioButton_2">
-        <property name="font">
-         <font>
-          <family>Bell MT</family>
-          <pointsize>11</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(71, 55, 42);</string>
-        </property>
-        <property name="text">
-         <string>اضافه کردن به انتهای لیست</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioButton">
-        <property name="font">
-         <font>
-          <family>Bell MT</family>
-          <pointsize>11</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(71, 55, 42);</string>
-        </property>
-        <property name="text">
-         <string>اضافه کردن به ابتدای لیست</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(170, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
-    <zorder></zorder>
-    <zorder></zorder>
-    <zorder>addBookReply_label</zorder>
-    <zorder>radioButton</zorder>
-    <zorder>radioButton_2</zorder>
-    <zorder>radioButton_3</zorder>
-    <zorder></zorder>
-    <zorder>widget</zorder>
    </widget>
-   <zorder>addBook_btn</zorder>
-   <zorder>back_btn</zorder>
-   <zorder>title_label</zorder>
-   <zorder>title_lineEdit</zorder>
-   <zorder>layoutWidget</zorder>
-   <zorder>layoutWidget_2</zorder>
-   <zorder>layoutWidget_3</zorder>
-   <zorder>frame</zorder>
-   <zorder>layoutWidget_4</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

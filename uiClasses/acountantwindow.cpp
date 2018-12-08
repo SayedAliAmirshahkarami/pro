@@ -1,6 +1,9 @@
 #include "acountantwindow.h"
 #include "ui_acountantwindow.h"
-
+#include <QFile>
+#include <QDir>
+#include <QMessageBox>
+#include <QTextStream>
 
 AcountantWindow::AcountantWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -66,6 +69,15 @@ void AcountantWindow::on_addBook_btn_clicked()
     publishYear = publishYearStr.toInt();
 
 
+    if(title.contains(";")){
+        ui->addBookReply_label->setText("در نام کتاب نباید کاراکتر ; وجود داشته باشد!");
+        return;
+    }
+
+    if(author.contains(";")){
+        ui->addBookReply_label->setText("در نام نویسنده نباید کاراکتر ; وجود داشته باشد!");
+        return;
+    }
     if(publishYear <= 0){
         ui->addBookReply_label->setText("سال انتشار کتاب صحیح وارد نشده است!");
         return;
@@ -76,8 +88,34 @@ void AcountantWindow::on_addBook_btn_clicked()
         return;
     }
 
+    Book* newBook = new Book(title , author , publishYear , price);
 
-    ui->addBookReply_label->setText(QString::number(price));
+
+
+    QDir bookListDir;
+    bookListDir.mkdir("BookList");
+    QFile bookListFile("BookList/bookList.txt");
+
+
+    if (!bookListFile.open(QIODevice::Append | QIODevice::Text)){
+
+        if(bookListFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+            QTextStream out(&bookListFile);
+            out.setCodec("UTF-8");
+            out<<title<<";"<<author<<";"<<publishYearStr<<";"<<priceStr<<"\n";
+            bookListFile.close();
+        }
+       return;
+    }
+
+
+           QTextStream out(&bookListFile);
+           out.setCodec("UTF-8");
+           out<<title<<";"<<author<<";"<<publishYearStr<<";"<<priceStr<<"\n";
+           bookListFile.close();
+
+           ui->addBookReply_label->setText("کتاب  " + title + " با موفقیت اضافه شد ");
+
 
 
 }

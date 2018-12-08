@@ -6,6 +6,7 @@
 #include "uiClasses/customerenterwindow.h"
 #include "uiClasses/acountantenterwindow.h"
 #include <QIcon>
+#include <QDir>
 
 namespace Ui {
 class MainWindow;

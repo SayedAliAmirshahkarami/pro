@@ -9,8 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->customerEnter_pbtn->setIcon(QIcon("../pro1/pics/customer_3.png"));
-    ui->accountantEnter_pbtn->setIcon(QIcon("../pro1/pics/acountant_2.png"));
+    ui->customerEnter_pbtn->setIcon(QIcon("../pro1/pics/customer.png"));
+    ui->accountantEnter_pbtn->setIcon(QIcon("../pro1/pics/acountant.png"));
 }
 
 MainWindow::~MainWindow()
@@ -24,8 +24,8 @@ void MainWindow::on_accountantEnter_pbtn_clicked()
 //   AcountantEnterWindow *acountantEnterWindow = new AcountantEnterWindow;
 //   acountantEnterWindow->showNormal();
     this->close();
-       AcountantWindow *acountantWindow = new AcountantWindow;
-       acountantWindow->showNormal();
+    AcountantWindow *acountantWindow = new AcountantWindow;
+    acountantWindow->showNormal();
 }
 
 void MainWindow::on_customerEnter_pbtn_clicked()

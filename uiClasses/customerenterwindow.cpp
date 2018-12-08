@@ -7,8 +7,8 @@ CustomerEnterWindow::CustomerEnterWindow(QWidget *parent) :
     ui(new Ui::CustomerEnterWindow)
 {
     ui->setupUi(this);
-    ui->enter_btn->setIcon(QIcon("../pro1/pics/entrance_2.png"));
-    ui->back_btn->setIcon(QIcon("../pro1/pics/back_1.png"));
+    ui->enter_btn->setIcon(QIcon("../pro1/pics/entrance.png"));
+    ui->back_btn->setIcon(QIcon("../pro1/pics/back.png"));
 }
 
 CustomerEnterWindow::~CustomerEnterWindow()

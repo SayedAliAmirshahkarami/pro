@@ -6,8 +6,9 @@ AcountantEnterWindow::AcountantEnterWindow(QWidget *parent) :
     ui(new Ui::AcountantEnterWindow)
 {
     ui->setupUi(this);
-    ui->enter_btn->setIcon(QIcon("../pro1/pics/entrance_2.png"));
-    ui->back_btn->setIcon(QIcon("../pro1/pics/back_1.png"));
+
+    ui->enter_btn->setIcon(QIcon("../pro1/pics/entrance.png"));
+    ui->back_btn->setIcon(QIcon("../pro1/pics/back.png"));
 
 }
 

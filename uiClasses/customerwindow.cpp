@@ -6,7 +6,7 @@ CustomerWindow::CustomerWindow(QWidget *parent) :
     ui(new Ui::CustomerWindow)
 {
     ui->setupUi(this);
-    ui->back_btn->setIcon(QIcon("../pro1/pics/back_1.png"));
+    ui->back_btn->setIcon(QIcon("../pro1/pics/back.png"));
 
 }
 
