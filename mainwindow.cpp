@@ -3,6 +3,7 @@
 //موقت
 #include "uiClasses/customerwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -11,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->customerEnter_pbtn->setIcon(QIcon("../pro1/pics/customer.png"));
     ui->accountantEnter_pbtn->setIcon(QIcon("../pro1/pics/acountant.png"));
+
+
 }
 
 MainWindow::~MainWindow()

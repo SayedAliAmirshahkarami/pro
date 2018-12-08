@@ -2,8 +2,8 @@
 #include "ui_acountantwindow.h"
 #include <QFile>
 #include <QDir>
-#include <QMessageBox>
 #include <QTextStream>
+#include "acountantenterwindow.h"
 
 AcountantWindow::AcountantWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +11,27 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->addBook_btn->setIcon(QIcon("../pro1/pics/addBook.png"));
+    ui->books_tableWidget->insertRow(0);
+
+    QDir bookListDir;
+    bookListDir.mkdir("BookList");
+    QFile bookListFile("BookList/bookList.txt");
+
+    bookList = new BookList;
+
+    if(bookListFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream in(&bookListFile);
+        while(!in.atEnd()){
+            QString bookInfo = in.readLine();
+
+
+//            for(int i = 0;bookInfo.at(i) != ";";i++){
+
+
+//            }
+
+        }
+    }
 
 }
 
@@ -117,5 +138,18 @@ void AcountantWindow::on_addBook_btn_clicked()
            ui->addBookReply_label->setText("کتاب  " + title + " با موفقیت اضافه شد ");
 
 
+
+
+}
+
+void AcountantWindow::on_back_btn_clicked()
+{
+    this->close();
+    AcountantEnterWindow *acountantEnterWd = new AcountantEnterWindow;
+    acountantEnterWd->showNormal();
+}
+
+void AcountantWindow::on_books_tableWidget_clicked(const QModelIndex &index)
+{
 
 }

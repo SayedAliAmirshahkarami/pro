@@ -9,8 +9,7 @@ class BookList
 private:
     Book *lastBook;
     Book* addToEmptyList(Book *);
-    BookList search(int , int flag);
-    BookList search(QString , int flag);
+
 public:
     BookList();
     Book* addAfter(Book * , Book *);
@@ -19,6 +18,9 @@ public:
     Book* remove(Book *);
     BookList* find(QString , QString , int , int);
     Book* find(Book*);
+    BookList* operator =(BookList &bookList);
+    Book* getLastBook();
+    void clear();
 
 
 };

@@ -20,6 +20,10 @@ public:
 private slots:
     void on_addBook_btn_clicked();
 
+    void on_back_btn_clicked();
+
+    void on_books_tableWidget_clicked(const QModelIndex &index);
+
 private:
     Ui::AcountantWindow *ui;
 };

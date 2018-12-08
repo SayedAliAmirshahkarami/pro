@@ -217,6 +217,44 @@
      </property>
     </widget>
    </widget>
+   <widget class="QTableWidget" name="books_tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>0</y>
+      <width>411</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <column>
+     <property name="text">
+      <string>نام کتاب</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>نویسنده</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>سال انتشار</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>قیمت</string>
+     </property>
+    </column>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
