@@ -24,6 +24,10 @@ private slots:
 
     void on_books_tableWidget_clicked(const QModelIndex &index);
 
+    void on_removeBook_btn_clicked();
+
+
+
 private:
     Ui::AcountantWindow *ui;
 };

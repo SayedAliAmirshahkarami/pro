@@ -3,6 +3,8 @@
 #include <QFile>
 #include <QDir>
 #include <QTextStream>
+#include <QStringList>
+#include <QTableWidgetItem>
 #include "acountantenterwindow.h"
 
 AcountantWindow::AcountantWindow(QWidget *parent) :
@@ -11,7 +13,6 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->addBook_btn->setIcon(QIcon("../pro1/pics/addBook.png"));
-    ui->books_tableWidget->insertRow(0);
 
     QDir bookListDir;
     bookListDir.mkdir("BookList");
@@ -21,17 +22,38 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
 
     if(bookListFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         QTextStream in(&bookListFile);
+        int i = 0;
+        in.setCodec("UTF-8");
         while(!in.atEnd()){
-            QString bookInfo = in.readLine();
+
+            QString line = in.readLine();
+//            qDebug(line.toUtf8().data());
+
+            QStringList bookInfo = line.split(';');
+            for(int k = 0;k < 4;k++)
+                qDebug(bookInfo.at(k).toStdString().c_str());
+
+            Book *newBook = new Book(bookInfo.at(0) , bookInfo.at(1) ,  bookInfo.at(2).toInt() , bookInfo.at(3).toInt());
+
+            bookList->addEnd(newBook);
 
 
-//            for(int i = 0;bookInfo.at(i) != ";";i++){
+            ui->books_tableWidget->insertRow(i);
+                for(int j = 0;j < 4;j++){
+//                    qDebug(bookInfo.at(j).toUtf8().data());
+                    QTableWidgetItem *item = new QTableWidgetItem(bookInfo.at(j));
 
+                    ui->books_tableWidget->setItem(i ,j , item);
+                }
 
-//            }
-
+        i++;
         }
+
+        bookListFile.close();
     }
+    QHeaderView* header = ui->books_tableWidget->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
+    header->setStretchLastSection(true);
 
 }
 
@@ -110,8 +132,25 @@ void AcountantWindow::on_addBook_btn_clicked()
     }
 
     Book* newBook = new Book(title , author , publishYear , price);
+    qDebug("newBook title : ");
+    qDebug(newBook->getTitle().toStdString().c_str());
+    bookList->addEnd(newBook);
+    bookList->display();
 
+    ui->books_tableWidget->insertRow(ui->books_tableWidget->rowCount());
 
+        QTableWidgetItem *item = new QTableWidgetItem(title);
+        ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 0 , item);
+        item = new QTableWidgetItem(author);
+        ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 1 , item);
+        item = new QTableWidgetItem(publishYearStr);
+        ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 2 , item);
+        item = new QTableWidgetItem(priceStr);
+        ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 3 , item);
+
+        QHeaderView* header = ui->books_tableWidget->horizontalHeader();
+        header->setSectionResizeMode(QHeaderView::Stretch);
+        header->setStretchLastSection(true);
 
     QDir bookListDir;
     bookListDir.mkdir("BookList");
@@ -153,3 +192,14 @@ void AcountantWindow::on_books_tableWidget_clicked(const QModelIndex &index)
 {
 
 }
+
+void AcountantWindow::on_removeBook_btn_clicked()
+{
+//    ui->books_tableWidget->selectedItems().at(0)->text;
+    qDebug(QString::number(ui->books_tableWidget->currentRow()).toStdString().c_str());
+    bookList->remove(bookList->getBookAt(ui->books_tableWidget->currentRow()));
+
+    ui->books_tableWidget->removeRow(ui->books_tableWidget->currentRow());
+}
+
+

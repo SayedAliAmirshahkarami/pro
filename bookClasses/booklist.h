@@ -2,6 +2,10 @@
 #define BOOKLIST_H
 
 #include "book.h"
+#include <iostream>
+#include <vector>
+
+using namespace std;
 
 
 class BookList
@@ -12,17 +16,15 @@ private:
 
 public:
     BookList();
-    Book* addAfter(Book * , Book *);
     Book* addEnd(Book *);
     Book* addBegin(Book *);
-    Book* remove(Book *);
-    BookList* find(QString , QString , int , int);
-    Book* find(Book*);
+    int remove(Book *);
+    vector<Book*> find(QString , QString , int , int);
     BookList* operator =(BookList &bookList);
     Book* getLastBook();
     void clear();
-
-
+    Book* getBookAt(int i);
+    void display();
 };
 
 #endif // BOOKLIST_H

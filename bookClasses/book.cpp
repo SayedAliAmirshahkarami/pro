@@ -5,6 +5,7 @@ Book::Book(QString author, QString title , int publishYear , int price){
     this->title = title;
     this->publishYear = publishYear;
     this->price = price;
+    next = NULL;
 }
 
 Book::Book(Book *copyBook){
@@ -12,6 +13,7 @@ Book::Book(Book *copyBook){
     this->title = copyBook->getTitle();
     this->publishYear = copyBook->getPublishYear();
     this->price = copyBook->getPrice();
+    this->next = copyBook->getNext();
 }
 
 QString Book::getAuthor(){
@@ -35,5 +37,7 @@ Book* Book::getNext(){
 }
 
 void Book::setNext(Book *nextBook){
-    this->next = nextBook;
+//    Book *tempBook = new Book(nextBook);
+//    this->next = tempBook;
+    next = nextBook;
 }
