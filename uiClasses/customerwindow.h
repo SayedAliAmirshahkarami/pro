@@ -15,6 +15,7 @@ class CustomerWindow : public QMainWindow
 public:
     explicit CustomerWindow(QWidget *parent = 0);
     ~CustomerWindow();
+    BookStack bookStack;
     
 private slots:
     void on_back_btn_clicked();
@@ -23,10 +24,11 @@ private slots:
 
     void on_addBookToStack_btn_clicked();
 
+
+
 private:
     Ui::CustomerWindow *ui;
 };
 
 #endif // CUSTOMERWINDOW_H
-
 

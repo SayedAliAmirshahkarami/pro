@@ -111,7 +111,7 @@ void CustomerWindow::on_addBookToStack_btn_clicked()
                  out<<bookList.getBookAt(i)->getTitle()<<";"<<bookList.getBookAt(i)->getAuthor()<<";"<<bookList.getBookAt(i)->getPublishYear()<<";"<<bookList.getBookAt(i)->getPrice()<<"\n";
              }
              ui->addToStackReply_label->setText("کتاب " + rmBookStr +  "از لیست کتاب ها حذف شد!");
-
+             
              bookListFile.close();
          }
     }

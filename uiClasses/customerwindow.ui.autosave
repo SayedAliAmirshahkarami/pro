@@ -153,7 +153,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QTableWidget" name="books_tableWidget_2">
+   <widget class="QTableWidget" name="bookStack_tableWidget_2">
     <property name="geometry">
      <rect>
       <x>230</x>
