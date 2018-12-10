@@ -2,6 +2,12 @@
 #define ACOUNTANTWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QDir>
+#include <QTextStream>
+#include <QStringList>
+#include <QTableWidgetItem>
+#include "acountantenterwindow.h"
 #include "../bookClasses/booklist.h"
 
 namespace Ui {
@@ -15,14 +21,11 @@ class AcountantWindow : public QMainWindow
 public:
     explicit AcountantWindow(QWidget *parent = 0);
     ~AcountantWindow();
-    BookList *bookList;
     
 private slots:
     void on_addBook_btn_clicked();
 
     void on_back_btn_clicked();
-
-    void on_books_tableWidget_clicked(const QModelIndex &index);
 
     void on_removeBook_btn_clicked();
 

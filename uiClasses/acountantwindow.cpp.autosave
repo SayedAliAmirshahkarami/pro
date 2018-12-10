@@ -176,7 +176,9 @@ void AcountantWindow::on_back_btn_clicked()
 void AcountantWindow::on_removeBook_btn_clicked()
 {
     if(ui->books_tableWidget->rowCount()){
+        QString rmBookStr = bookList.getBookAt(ui->books_tableWidget->currentRow())->getTitle();
         bookList.remove(bookList.getBookAt(ui->books_tableWidget->currentRow()));
+        
          qDebug("remove");
          bookList.display();
          ui->books_tableWidget->removeRow(ui->books_tableWidget->currentRow());
@@ -186,7 +188,7 @@ void AcountantWindow::on_removeBook_btn_clicked()
              for(int i = 0;i < bookList.getBooksNumber();i++){
                  out<<bookList.getBookAt(i)->getTitle()<<";"<<bookList.getBookAt(i)->getAuthor()<<";"<<bookList.getBookAt(i)->getPublishYear()<<";"<<bookList.getBookAt(i)->getPrice()<<"\n";
              }
-
+             ui->removeBookReply_label->setText("کتاب " + rmBookStr +  "از لیست کتاب ها حذف شد!");
              bookListFile.close();
          }
     }

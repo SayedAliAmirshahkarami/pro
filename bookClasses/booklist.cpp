@@ -2,10 +2,16 @@
 
 BookList::BookList(){
     lastBook = NULL;
+    count = 0;
 }
 
 void BookList::clear(){
     lastBook = NULL;
+    count = 0;
+}
+
+int BookList::getBooksNumber(){
+    return count;
 }
 
 BookList* BookList::operator =(BookList &bookList){
@@ -23,14 +29,11 @@ Book* BookList::getLastBook(){
 }
 
 Book* BookList::getBookAt(int i){
-    qDebug(QString::number(i).toStdString().c_str());
 
     Book* currentBook = lastBook->getNext();
     for(int j = 0;j < i;j++){
-        qDebug(currentBook->getTitle().toStdString().c_str());
         currentBook = currentBook->getNext();
     }
-    qDebug(currentBook->getTitle().toStdString().c_str());
     return currentBook;
 }
 
@@ -175,6 +178,7 @@ vector<Book*> BookList::find(QString author="" , QString title="" , int publishY
 
 
 Book* BookList::addEnd(Book *newBook){
+    count++;
     if(!lastBook){
         qDebug("bookList is empty...");
         return addToEmptyList(newBook);
@@ -184,13 +188,11 @@ Book* BookList::addEnd(Book *newBook){
     lastBook->setNext(tempBook);
 
     lastBook = tempBook;
-    qDebug(lastBook->getTitle().toStdString().c_str());
-    qDebug(tempBook->getTitle().toStdString().c_str());
-    qDebug(lastBook->getNext()->getTitle().toStdString().c_str());
     return lastBook;
 }
 
 Book* BookList::addBegin(Book *newBook){
+  count++;
   if(!lastBook){
       return addToEmptyList(newBook);
   }
@@ -208,13 +210,18 @@ Book* BookList::addToEmptyList(Book *newBook){
     }
     lastBook = new Book(newBook);
     lastBook->setNext(lastBook);
-    qDebug("LastBook title : ");
-    qDebug(lastBook->getTitle().toStdString().c_str());
     return lastBook;
 }
 
 void BookList::display(){
+    qDebug("display : ");
+    if(!lastBook){
+
+        qDebug("list is empty..");
+       return;
+    }
     Book* currentBook = lastBook->getNext();
+
     do{
         qDebug(currentBook->getTitle().toStdString().c_str());
         currentBook = currentBook->getNext();
@@ -222,20 +229,40 @@ void BookList::display(){
 }
 
 int BookList::remove(Book *rmBook){
-    qDebug(rmBook->getTitle().toStdString().c_str());
+    if(!lastBook){
+        qDebug("list is empty can't remove...");
+      return 0;
+    }
+
      Book *currentBook = lastBook->getNext();
+
      if(currentBook == lastBook){
          if(rmBook == lastBook){
              lastBook = NULL;
+             count--;
              return 1;
          }
          else{
              return 0;
          }
      }
+
+     if(rmBook == lastBook){
+         while(currentBook->getNext() != lastBook){
+             currentBook = currentBook->getNext();
+         }
+         currentBook->setNext(rmBook->getNext());
+         lastBook = currentBook;
+         count--;
+         return 1;
+
+
+     }
+
      do{
          if(currentBook->getNext() == rmBook){
              currentBook->setNext(rmBook->getNext());
+             count--;
              return 1;
          }
          currentBook = currentBook->getNext();

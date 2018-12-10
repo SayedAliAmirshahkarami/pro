@@ -13,7 +13,7 @@ class BookList
 private:
     Book *lastBook;
     Book* addToEmptyList(Book *);
-
+    int count;
 public:
     BookList();
     Book* addEnd(Book *);
@@ -25,6 +25,7 @@ public:
     void clear();
     Book* getBookAt(int i);
     void display();
+    int getBooksNumber();
 };
 
 #endif // BOOKLIST_H

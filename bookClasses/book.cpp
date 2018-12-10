@@ -1,6 +1,6 @@
 #include "book.h"
 
-Book::Book(QString author, QString title , int publishYear , int price){
+Book::Book(QString title, QString author, int publishYear , int price){
     this->author = author;
     this->title = title;
     this->publishYear = publishYear;
@@ -13,7 +13,7 @@ Book::Book(Book *copyBook){
     this->title = copyBook->getTitle();
     this->publishYear = copyBook->getPublishYear();
     this->price = copyBook->getPrice();
-    this->next = copyBook->getNext();
+    this->next = NULL;
 }
 
 QString Book::getAuthor(){
@@ -37,7 +37,5 @@ Book* Book::getNext(){
 }
 
 void Book::setNext(Book *nextBook){
-//    Book *tempBook = new Book(nextBook);
-//    this->next = tempBook;
     next = nextBook;
 }

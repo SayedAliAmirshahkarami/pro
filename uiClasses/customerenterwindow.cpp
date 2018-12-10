@@ -1,6 +1,8 @@
 #include "customerenterwindow.h"
 #include "ui_customerenterwindow.h"
 
+int type;
+QString nameStr;
 
 CustomerEnterWindow::CustomerEnterWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,7 +20,19 @@ CustomerEnterWindow::~CustomerEnterWindow()
 
 void CustomerEnterWindow::on_enter_btn_clicked()
 {
-     QString nameStr = ui->name_lineEdit->text();
+     nameStr = ui->name_lineEdit->text();
+
+     if(ui->male_radioButton->isChecked()){
+         type = 1;
+     }
+     else if(ui->female_radioButton->isChecked()){
+         type = 0;
+     }
+     else{
+         ui->reply_label->setText("لطفا جنسیت خود را مشخص کنید!");
+         return;
+     }
+
 
     int i;
     for(i = 0;i < nameStr.size() && nameStr.at(i) == ' ';i++);
@@ -28,6 +42,7 @@ void CustomerEnterWindow::on_enter_btn_clicked()
         ui->reply_label->setText("نام و نام خانوادگی وارد نشده \n لطفا نام و نام خانوادگی خود را وارد کنید");
         return;
     }
+
     QDir enteredCustomersDir;
     enteredCustomersDir.mkdir("enteredCustomers");
     QFile enteredCustomersFile("enteredCustomers/enteredCustomers.txt");

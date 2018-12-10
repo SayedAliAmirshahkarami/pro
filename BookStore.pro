@@ -19,7 +19,10 @@ SOURCES += main.cpp\
     uiClasses/customerwindow.cpp \
     uiClasses/acountantwindow.cpp \
     uiClasses/customerenterwindow.cpp \
-    uiClasses/acountantenterwindow.cpp
+    uiClasses/acountantenterwindow.cpp \
+    customer.cpp \
+    queue.cpp \
+    bookstack.cpp
 
 HEADERS  += mainwindow.h \
     bookClasses/book.h \
@@ -27,7 +30,10 @@ HEADERS  += mainwindow.h \
     uiClasses/customerwindow.h \
     uiClasses/acountantwindow.h \
     uiClasses/customerenterwindow.h \
-    uiClasses/acountantenterwindow.h
+    uiClasses/acountantenterwindow.h \
+    customer.h \
+    queue.h \
+    bookstack.h
 
 FORMS    += mainwindow.ui \
     uiClasses/customerwindow.ui \

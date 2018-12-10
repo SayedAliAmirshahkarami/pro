@@ -23,10 +23,10 @@ private slots:
 
     void on_addBookToStack_btn_clicked();
 
+    
 private:
     Ui::CustomerWindow *ui;
 };
 
 #endif // CUSTOMERWINDOW_H
-
 
