@@ -7,11 +7,27 @@
 Queue::Queue()
 {
        front = rear = NULL;
+       size = 0;
+}
 
+Customer* Queue::getFrontCustomer(){
+    return front;
+}
+
+bool Queue::isEmpty(){
+    if(front == NULL){
+        return true;
+    }
+    else
+        return false;
+}
+
+int Queue::getSize(){
+    return size;
 }
     void Queue::push_rear(Customer *customer){
 
-
+           size++;
            Customer *temp = new Customer(customer);
 
            if(front){
@@ -25,12 +41,10 @@ Queue::Queue()
 
 
     Customer* Queue::pop_front(){
-        if(front == NULL){
-            QMessageBox msgBox;
-            msgBox.setText("the queue is empty().");
-            msgBox.exec();
-
+        if(isEmpty()){
+           return NULL;
           }
+          size--;
 
           Customer* temp=front;
 

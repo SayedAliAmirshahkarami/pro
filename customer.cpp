@@ -5,6 +5,7 @@ Customer::Customer(QString name,int type)
        bookStack = new BookStack();
        this->name=name;
        this->type=type;
+       cost = 0;
 
 }
 
@@ -13,9 +14,16 @@ Customer::Customer(Customer *customer){
     this->name = customer->getName();
     this->type = customer->getType();
     this->next = NULL;
+    cost = customer->getCost();
 
 }
 
+int Customer::getCost(){
+    return cost;
+}
+void Customer::increaseCost(int amount){
+    cost += amount;
+}
     Customer*Customer::getNext(){
         return next;
 

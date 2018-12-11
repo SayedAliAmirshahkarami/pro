@@ -31,6 +31,12 @@ private slots:
 
 
 
+    void on_calculateCost_btn_clicked();
+
+    void on_sortByName_btn_clicked();
+
+    void on_sortByPublishYear_btn_clicked();
+
 private:
     Ui::AcountantWindow *ui;
 };

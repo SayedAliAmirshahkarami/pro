@@ -45,13 +45,13 @@
      </size>
     </property>
    </widget>
-   <widget class="QFrame" name="addBook_frame">
+   <widget class="QFrame" name="Books_frame">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>10</y>
+      <x>10</x>
+      <y>40</y>
       <width>211</width>
-      <height>211</height>
+      <height>321</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -60,16 +60,43 @@
     <property name="frameShadow">
      <enum>QFrame::Sunken</enum>
     </property>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="QLabel" name="changeBookListReply_label">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>0</y>
        <width>191</width>
-       <height>156</height>
+       <height>41</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>8</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(170, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>52</y>
+       <width>191</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
@@ -187,51 +214,49 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="removeBook_btn">
+        <property name="font">
+         <font>
+          <family>Berlin Sans FB</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>حذف کردن کتاب</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../pics/removeBook.png</normaloff>../pics/removeBook.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
      </layout>
-    </widget>
-    <widget class="QLabel" name="addBookReply_label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>191</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>8</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(170, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
     </widget>
    </widget>
    <widget class="QTableWidget" name="books_tableWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>551</width>
-      <height>321</height>
+      <x>230</x>
+      <y>30</y>
+      <width>561</width>
+      <height>281</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Berlin Sans FB</family>
-      <pointsize>13</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <family>Bell MT</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <column>
@@ -255,13 +280,150 @@
      </property>
     </column>
    </widget>
-   <widget class="QFrame" name="remove_frame">
+   <widget class="QTableWidget" name="maleQueue_tableWidget">
     <property name="geometry">
      <rect>
-      <x>569</x>
-      <y>230</y>
+      <x>520</x>
+      <y>360</y>
+      <width>271</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bell MT</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <column>
+     <property name="text">
+      <string>نام</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>هزینه</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="books_label">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>0</y>
+      <width>561</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB Demi</family>
+      <pointsize>19</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 170, 0);</string>
+    </property>
+    <property name="text">
+     <string>کتاب های موجود در کتاب فروشی</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="maleQueue_label">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>320</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB Demi</family>
+      <pointsize>19</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 170, 0);</string>
+    </property>
+    <property name="text">
+     <string>صف برادران</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="femaleQueue_tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>360</y>
+      <width>281</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Bell MT</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <column>
+     <property name="text">
+      <string>نام</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>هزینه</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="femaleQueue_label">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>320</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB Demi</family>
+      <pointsize>19</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 170, 0);</string>
+    </property>
+    <property name="text">
+     <string>صف خواهران</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QFrame" name="sort_frame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
       <width>211</width>
-      <height>131</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -270,13 +432,83 @@
     <property name="frameShadow">
      <enum>QFrame::Sunken</enum>
     </property>
-    <widget class="QPushButton" name="removeBook_btn">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>80</y>
-       <width>189</width>
-       <height>40</height>
+       <y>10</y>
+       <width>191</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QPushButton" name="sortByName_btn">
+        <property name="font">
+         <font>
+          <family>Berlin Sans FB</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>نمایش به ترتیب نام کتاب</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sortByPublishYear_btn">
+        <property name="font">
+         <font>
+          <family>Berlin Sans FB</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>نمایش به ترتیب سال انتشار</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="calculateCost_frame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>470</y>
+      <width>211</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <widget class="QPushButton" name="calculateCost_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>9</y>
+       <width>191</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="font">
@@ -288,44 +520,13 @@
       </font>
      </property>
      <property name="text">
-      <string>حذف کردن کتاب</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../pics/removeBook.png</normaloff>../pics/removeBook.png</iconset>
+      <string>رسیدگی به حساب</string>
      </property>
      <property name="iconSize">
       <size>
        <width>32</width>
        <height>32</height>
       </size>
-     </property>
-    </widget>
-    <widget class="QLabel" name="removeBookReply_label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>191</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>8</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(170, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>

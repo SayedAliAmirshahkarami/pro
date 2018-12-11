@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include "../bookClasses/bookList.h"
+#include <QMessageBox>
 
 extern int type;
 extern QString nameStr;
@@ -73,10 +74,14 @@ else{
     header->setStretchLastSection(true);
 
 
+
+
+
 }
 
 CustomerWindow::~CustomerWindow()
 {
+
     delete ui;
 }
 
@@ -131,16 +136,84 @@ void CustomerWindow::on_addBookToStack_btn_clicked()
 
 void CustomerWindow::on_finish_btn_clicked()
 {
+
+
     if(type == 1){
-        maleQueue.push_rear(customer);
+
+
 
         if(maleQueueFile.open(QIODevice::Append | QIODevice::Text)){
             QTextStream out(&maleQueueFile);
-            out<<nameStr<<";"<<QString::number(type)<<";";
-        }
+            out.setCodec("UTF-8");
+            while(customer->getBookStack()->getTopBook()){
+                customer->increaseCost(customer->getBookStack()->pop()->getPrice());
+            }
+            maleQueue.push_rear(customer);
+            out<<nameStr<<";"<<QString::number(customer->getCost())<<"\n";
 
+         maleQueueFile.close();
+        }
     }
     else if(type == 0){
-        femaleQueue.push_rear(customer);
+
+
+        if(femaleQueueFile.open(QIODevice::Append | QIODevice::Text)){
+            QTextStream out(&femaleQueueFile);
+            out.setCodec("UTF-8");
+            while(customer->getBookStack()->getTopBook()){
+                customer->increaseCost(customer->getBookStack()->pop()->getPrice());
+            }
+            femaleQueue.push_rear(customer);
+            out<<nameStr<<";"<<QString::number(customer->getCost())<<"\n";
+
+         femaleQueueFile.close();
+        }
+    }
+    QMessageBox msgBox;
+
+    msgBox.setText(" شما وارد صف شدید! " );
+
+    msgBox.showNormal();
+    msgBox.exec();
+
+    this->close();
+    MainWindow *mainWindow = new MainWindow;
+    mainWindow->showNormal();
+}
+
+void CustomerWindow::on_removeFromStack_btn_clicked(){
+
+    if(ui->bookStack_tableWidget->rowCount()){
+
+        if(bookListFile.open(QIODevice::Append | QIODevice::Text)){
+            QTextStream out(&bookListFile);
+            out.setCodec("UTF-8");
+
+                out<<customer->getBookStack()->getTopBook()->getTitle()<<";"<<customer->getBookStack()->getTopBook()->getAuthor()<<";"<<customer->getBookStack()->getTopBook()->getPublishYear()<<";"<<customer->getBookStack()->getTopBook()->getPrice()<<"\n";
+        bookListFile.close();
+        }
+            ui->removeFromStackReply_label->setText(" کتاب " + customer->getBookStack()->getTopBook()->getTitle() +  " از سبدخرید حذف شد!");
+
+            ui->books_tableWidget->insertRow(ui->books_tableWidget->rowCount());
+
+                QTableWidgetItem *item = new QTableWidgetItem(customer->getBookStack()->getTopBook()->getTitle());
+                ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 0 , item);
+                item = new QTableWidgetItem(customer->getBookStack()->getTopBook()->getAuthor());
+                ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 1 , item);
+                item = new QTableWidgetItem(QString::number(customer->getBookStack()->getTopBook()->getPublishYear()));
+                ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 2 , item);
+                item = new QTableWidgetItem(QString::number(customer->getBookStack()->getTopBook()->getPrice()));
+                ui->books_tableWidget->setItem(ui->books_tableWidget->rowCount() - 1 , 3 , item);
+
+                QHeaderView* header = ui->books_tableWidget->horizontalHeader();
+                header->setSectionResizeMode(QHeaderView::Stretch);
+                header->setStretchLastSection(true);
+
+
+         bookList->addEnd(customer->getBookStack()->pop());
+
+         ui->bookStack_tableWidget->removeRow(ui->bookStack_tableWidget->rowCount() - 1);
+
+
     }
 }

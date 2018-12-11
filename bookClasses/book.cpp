@@ -36,6 +36,19 @@ Book* Book::getNext(){
     return next;
 }
 
+void Book::setTitle(QString title){
+    this->title = title;
+}
+void Book::setAuthor(QString name){
+    author = name;
+}
+void Book::setPublishYear(int year){
+    publishYear = year;
+}
+void Book::setPrice(int amount){
+    price = amount;
+}
+
 void Book::setNext(Book *nextBook){
     next = nextBook;
 }

@@ -11,7 +11,6 @@ class BookStack
 private:
     Book* topBook;
     int count; //head
-    int stackData;
 
 public:
 

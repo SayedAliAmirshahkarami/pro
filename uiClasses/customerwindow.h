@@ -25,9 +25,13 @@ private slots:
 
     void on_finish_btn_clicked();
 
+    void on_removeFromStack_btn_clicked();
+
 private:
     Ui::CustomerWindow *ui;
 };
 
 #endif // CUSTOMERWINDOW_H
+
+
 

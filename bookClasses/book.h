@@ -18,6 +18,10 @@ public:
     int getPublishYear();
     int getPrice();
     Book* getNext();
+    void setTitle(QString);
+    void setAuthor(QString);
+    void setPublishYear(int);
+    void setPrice(int);
     void setNext(Book *);
 };
 

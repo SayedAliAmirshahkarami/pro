@@ -1,8 +1,10 @@
 #include "acountantwindow.h"
 #include "ui_acountantwindow.h"
 #include "queue.h"
+#include <QMessageBox>
 
 extern Queue maleQueue , femaleQueue;
+extern QFile maleQueueFile , femaleQueueFile;
 extern BookList *bookList;
 extern QFile bookListFile;
 
@@ -12,7 +14,8 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->addBook_btn->setIcon(QIcon("../pro1/pics/addBook.png"));
-
+    ui->removeBook_btn->setIcon(QIcon("../pro1/pics/removeBook.png"));
+    ui->back_btn->setIcon(QIcon("../pro1/pics/back.png"));
     bool wasEmpty;
 if(bookList->isEmpty()){
     wasEmpty = true;
@@ -27,11 +30,9 @@ else{
         while(!in.atEnd()){
 
             QString line = in.readLine();
-//            qDebug(line.toUtf8().data());
 
             QStringList bookInfo = line.split(';');
-//            for(int k = 0;k < 4;k++)
-//                qDebug(bookInfo.at(k).toStdString().c_str());
+
 
             if(wasEmpty == true){
                Book *newBook = new Book(bookInfo.at(0) , bookInfo.at(1) ,  bookInfo.at(2).toInt() , bookInfo.at(3).toInt());
@@ -42,7 +43,7 @@ else{
             ui->books_tableWidget->insertRow(i);
 
                 for(int j = 0;j < 4;j++){
-//                    qDebug(bookInfo.at(j).toUtf8().data());
+
                     QTableWidgetItem *item = new QTableWidgetItem(bookInfo.at(j));
 
                     ui->books_tableWidget->setItem(i ,j , item);
@@ -58,6 +59,45 @@ else{
     QHeaderView* header = ui->books_tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
     header->setStretchLastSection(true);
+
+    QTableWidgetItem *newItem;
+
+    qDebug(QString::number(maleQueue.getSize()).toStdString().c_str());
+
+    if(maleQueue.getSize()){
+        Customer *maleCustomer = maleQueue.getFrontCustomer();
+        for(int i = 0;i < maleQueue.getSize();i++){
+            ui->maleQueue_tableWidget->insertRow(i);
+            newItem = new QTableWidgetItem(maleCustomer->getName());
+            ui->maleQueue_tableWidget->setItem(i , 0 , newItem);
+            qDebug("male customer cost : ");
+            qDebug(QString::number(maleCustomer->getCost()).toStdString().c_str());
+            qDebug(maleCustomer->getName().toStdString().c_str());
+
+            newItem = new QTableWidgetItem(QString::number(maleCustomer->getCost()));
+            ui->maleQueue_tableWidget->setItem(i , 1 , newItem);
+            maleCustomer = maleCustomer->getNext();
+        }
+    }
+    header = ui->maleQueue_tableWidget->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
+    header->setStretchLastSection(true);
+
+    if(femaleQueue.getSize()){
+        Customer *femaleCustomer = femaleQueue.getFrontCustomer();
+        for(int i = 0;i < femaleQueue.getSize();i++){
+            ui->femaleQueue_tableWidget->insertRow(i);
+            newItem = new QTableWidgetItem(femaleCustomer->getName());
+            ui->femaleQueue_tableWidget->setItem(i , 0 , newItem);
+            newItem = new QTableWidgetItem(QString::number(femaleCustomer->getCost()));
+            ui->femaleQueue_tableWidget->setItem(i , 1 , newItem);
+            femaleCustomer = femaleCustomer->getNext();
+        }
+    }
+    header = ui->femaleQueue_tableWidget->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
+    header->setStretchLastSection(true);
+
 
 }
 
@@ -79,7 +119,7 @@ void AcountantWindow::on_addBook_btn_clicked()
     title.remove(0,i);
 
     if(title.isEmpty()){
-        ui->addBookReply_label->setText("نام کتاب وارد نشده است!");
+        ui->changeBookListReply_label->setText("نام کتاب وارد نشده است!");
         return;
     }
 
@@ -88,7 +128,7 @@ void AcountantWindow::on_addBook_btn_clicked()
     author.remove(0,i);
 
     if(author.isEmpty()){
-        ui->addBookReply_label->setText("نام نویسنده وارد نشده است!");
+        ui->changeBookListReply_label->setText("نام نویسنده وارد نشده است!");
         return;
     }
 
@@ -99,7 +139,7 @@ void AcountantWindow::on_addBook_btn_clicked()
     publishYearStr.remove(0,i);
 
     if(publishYearStr.isEmpty()){
-        ui->addBookReply_label->setText("سال انتشار کتاب وارد نشده است!");
+        ui->changeBookListReply_label->setText("سال انتشار کتاب وارد نشده است!");
         return;
     }
 
@@ -108,7 +148,7 @@ void AcountantWindow::on_addBook_btn_clicked()
     priceStr.remove(0,i);
 
     if(priceStr.isEmpty()){
-        ui->addBookReply_label->setText("قیمت کتاب وارد نشده است!");
+        ui->changeBookListReply_label->setText("قیمت کتاب وارد نشده است!");
         return;
     }
 
@@ -117,29 +157,27 @@ void AcountantWindow::on_addBook_btn_clicked()
 
 
     if(title.contains(";")){
-        ui->addBookReply_label->setText("در نام کتاب نباید کاراکتر ; وجود داشته باشد!");
+        ui->changeBookListReply_label->setText("در نام کتاب نباید کاراکتر ; وجود داشته باشد!");
         return;
     }
 
     if(author.contains(";")){
-        ui->addBookReply_label->setText("در نام نویسنده نباید کاراکتر ; وجود داشته باشد!");
+        ui->changeBookListReply_label->setText("در نام نویسنده نباید کاراکتر ; وجود داشته باشد!");
         return;
     }
     if(publishYear <= 0){
-        ui->addBookReply_label->setText("سال انتشار کتاب صحیح وارد نشده است!");
+        ui->changeBookListReply_label->setText("سال انتشار کتاب صحیح وارد نشده است!");
         return;
     }
 
     if(price <= 0 && priceStr != "0"){
-        ui->addBookReply_label->setText("مقدار قیمت کتاب صحیح وارد نشده است!");
+        ui->changeBookListReply_label->setText("مقدار قیمت کتاب صحیح وارد نشده است!");
         return;
     }
 
     Book* newBook = new Book(title , author , publishYear , price);
-//    qDebug("newBook title : ");
-//    qDebug(newBook->getTitle().toStdString().c_str());
+
     bookList->addEnd(newBook);
-//    bookList->display();
 
     ui->books_tableWidget->insertRow(ui->books_tableWidget->rowCount());
 
@@ -166,7 +204,7 @@ void AcountantWindow::on_addBook_btn_clicked()
            out<<title<<";"<<author<<";"<<publishYearStr<<";"<<priceStr<<"\n";
            bookListFile.close();
 
-           ui->addBookReply_label->setText("کتاب  " + title + " با موفقیت اضافه شد ");
+           ui->changeBookListReply_label->setText("کتاب  " + title + " با موفقیت اضافه شد ");
 
       }
 
@@ -198,10 +236,163 @@ void AcountantWindow::on_removeBook_btn_clicked()
                  qDebug(QString::number(i).toStdString().c_str());
                  out<<bookList->getBookAt(i)->getTitle()<<";"<<bookList->getBookAt(i)->getAuthor()<<";"<<bookList->getBookAt(i)->getPublishYear()<<";"<<bookList->getBookAt(i)->getPrice()<<"\n";
              }
-             ui->removeBookReply_label->setText("کتاب " + rmBookStr +  "از لیست کتاب ها حذف شد!");
+             ui->changeBookListReply_label->setText("کتاب " + rmBookStr +  "از لیست کتاب ها حذف شد!");
              bookListFile.close();
          }
     }
 }
 
 
+
+void AcountantWindow::on_calculateCost_btn_clicked()
+{
+    QFile nobatFile("Nobat/nobat.txt");
+    Customer *frontCustomer;
+    if(nobatFile.open(QIODevice::ReadWrite | QIODevice::Text)){
+        QTextStream inOut(&nobatFile);
+        char nobatChar;
+        inOut>>nobatChar;
+        inOut.seek(0);
+        if(maleQueue.isEmpty()){
+           inOut<<'0';
+           inOut.seek(0);
+           nobatChar = '0';
+        }
+        if(femaleQueue.isEmpty()){
+            inOut<<'1';
+            inOut.seek(0);
+            nobatChar = '1';
+        }
+        if(nobatChar == '1'){
+
+          frontCustomer = maleQueue.pop_front();
+
+           if(maleQueueFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+               QTextStream qOut(&maleQueueFile);
+               qOut.setCodec("UTF-8");
+               Customer* customer = maleQueue.getFrontCustomer();
+               for(int i = 0;i < maleQueue.getSize();i++){
+                   qOut<<customer->getName()<<";"<<customer->getCost()<<"\n";
+                   customer = customer->getNext();
+               }
+            maleQueueFile.close();
+           }
+
+           ui->maleQueue_tableWidget->removeRow(0);
+           inOut<<'0';
+        }
+        else if(nobatChar == '0'){
+           frontCustomer = femaleQueue.pop_front();
+           if(femaleQueueFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+               QTextStream qOut(&femaleQueueFile);
+               qOut.setCodec("UTF-8");
+               Customer* customer = femaleQueue.getFrontCustomer();
+               for(int i = 0;i < femaleQueue.getSize();i++){
+                   qOut<<customer->getName()<<";"<<customer->getCost()<<"\n";
+                   customer = customer->getNext();
+               }
+               femaleQueueFile.close();
+           }
+           ui->femaleQueue_tableWidget->removeRow(0);
+
+           inOut<<'1';
+        }
+
+     nobatFile.close();
+    }
+    if(frontCustomer){
+      QMessageBox msgBox;
+
+      msgBox.setText( "مبلغ قابل پرداخت  " + QString::number(frontCustomer->getCost()) );
+
+      msgBox.showNormal();
+      msgBox.exec();
+    }
+
+}
+
+void AcountantWindow::on_sortByName_btn_clicked()
+{
+
+    bool swapped;
+    for(int i = 0;i < bookList->getBooksNumber() - 1;i++){
+        swapped = false;
+        for(int j = 0;j < bookList->getBooksNumber() - i - 1;j++){
+            if(QString::compare(bookList->getBookAt(j)->getTitle() , bookList->getBookAt(j + 1)->getTitle()) > 0){
+                QString tempTitle = bookList->getBookAt(j)->getTitle();
+                bookList->getBookAt(j)->setTitle(bookList->getBookAt(j + 1)->getTitle());
+                bookList->getBookAt(j + 1)->setTitle(tempTitle);
+                QString tempAuthor = bookList->getBookAt(j)->getAuthor();
+                bookList->getBookAt(j)->setAuthor(bookList->getBookAt(j + 1)->getAuthor());
+                bookList->getBookAt(j + 1)->setAuthor(tempAuthor);
+                int tempPublishYear = bookList->getBookAt(j)->getPublishYear();
+                bookList->getBookAt(j)->setPublishYear(bookList->getBookAt(j + 1)->getPublishYear());
+                bookList->getBookAt(j + 1)->setPublishYear(tempPublishYear);
+                int tempPrice = bookList->getBookAt(j)->getPrice();
+                bookList->getBookAt(j)->setPrice(bookList->getBookAt(j + 1)->getPrice());
+                bookList->getBookAt(j + 1)->setPrice(tempPrice);
+                swapped = true;
+           }
+        }
+        if (swapped == false)
+            break;
+    }
+    for(int i = 0;i < bookList->getBooksNumber();i++){
+        ui->books_tableWidget->removeRow(0);
+    }
+    QTableWidgetItem *item;
+    for(int i = 0;i < bookList->getBooksNumber();i++){
+        ui->books_tableWidget->insertRow(i);
+        item = new QTableWidgetItem(bookList->getBookAt(i)->getTitle());
+        ui->books_tableWidget->setItem(i , 0 , item);
+        item = new QTableWidgetItem(bookList->getBookAt(i)->getAuthor());
+        ui->books_tableWidget->setItem(i , 1 , item);
+        item = new QTableWidgetItem(QString::number(bookList->getBookAt(i)->getPublishYear()));
+        ui->books_tableWidget->setItem(i , 2 , item);
+        item = new QTableWidgetItem(QString::number(bookList->getBookAt(i)->getPrice()));
+        ui->books_tableWidget->setItem(i , 3 , item);
+    }
+
+}
+
+void AcountantWindow::on_sortByPublishYear_btn_clicked()
+{
+    bool swapped;
+    for(int i = 0;i < bookList->getBooksNumber() - 1;i++){
+        swapped = false;
+        for(int j = 0;j < bookList->getBooksNumber() - i - 1;j++){
+            if(bookList->getBookAt(j)->getPublishYear() > bookList->getBookAt(j + 1)->getPublishYear()){
+                QString tempTitle = bookList->getBookAt(j)->getTitle();
+                bookList->getBookAt(j)->setTitle(bookList->getBookAt(j + 1)->getTitle());
+                bookList->getBookAt(j + 1)->setTitle(tempTitle);
+                QString tempAuthor = bookList->getBookAt(j)->getAuthor();
+                bookList->getBookAt(j)->setAuthor(bookList->getBookAt(j + 1)->getAuthor());
+                bookList->getBookAt(j + 1)->setAuthor(tempAuthor);
+                int tempPublishYear = bookList->getBookAt(j)->getPublishYear();
+                bookList->getBookAt(j)->setPublishYear(bookList->getBookAt(j + 1)->getPublishYear());
+                bookList->getBookAt(j + 1)->setPublishYear(tempPublishYear);
+                int tempPrice = bookList->getBookAt(j)->getPrice();
+                bookList->getBookAt(j)->setPrice(bookList->getBookAt(j + 1)->getPrice());
+                bookList->getBookAt(j + 1)->setPrice(tempPrice);
+                swapped = true;
+           }
+        }
+        if (swapped == false)
+            break;
+    }
+    for(int i = 0;i < bookList->getBooksNumber();i++){
+        ui->books_tableWidget->removeRow(0);
+    }
+    QTableWidgetItem *item;
+    for(int i = 0;i < bookList->getBooksNumber();i++){
+        ui->books_tableWidget->insertRow(i);
+        item = new QTableWidgetItem(bookList->getBookAt(i)->getTitle());
+        ui->books_tableWidget->setItem(i , 0 , item);
+        item = new QTableWidgetItem(bookList->getBookAt(i)->getAuthor());
+        ui->books_tableWidget->setItem(i , 1 , item);
+        item = new QTableWidgetItem(QString::number(bookList->getBookAt(i)->getPublishYear()));
+        ui->books_tableWidget->setItem(i , 2 , item);
+        item = new QTableWidgetItem(QString::number(bookList->getBookAt(i)->getPrice()));
+        ui->books_tableWidget->setItem(i , 3 , item);
+    }
+}
