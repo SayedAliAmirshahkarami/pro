@@ -3,7 +3,7 @@
 #include "queue.h"
 
 extern Queue maleQueue , femaleQueue;
-extern BookList bookList;
+extern BookList *bookList;
 extern QFile bookListFile;
 
 AcountantWindow::AcountantWindow(QWidget *parent) :
@@ -13,7 +13,14 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->addBook_btn->setIcon(QIcon("../pro1/pics/addBook.png"));
 
-    if(bookListFile.open(QIODevice::ReadOnly | QIODevice::Text)){
+    bool wasEmpty;
+if(bookList->isEmpty()){
+    wasEmpty = true;
+}
+else{
+   wasEmpty = false;
+}
+        if(bookListFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         QTextStream in(&bookListFile);
         int i = 0;
         in.setCodec("UTF-8");
@@ -26,10 +33,11 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
 //            for(int k = 0;k < 4;k++)
 //                qDebug(bookInfo.at(k).toStdString().c_str());
 
-            Book *newBook = new Book(bookInfo.at(0) , bookInfo.at(1) ,  bookInfo.at(2).toInt() , bookInfo.at(3).toInt());
+            if(wasEmpty == true){
+               Book *newBook = new Book(bookInfo.at(0) , bookInfo.at(1) ,  bookInfo.at(2).toInt() , bookInfo.at(3).toInt());
 
-            bookList.addEnd(newBook);
-
+               bookList->addEnd(newBook);
+            }
 
             ui->books_tableWidget->insertRow(i);
 
@@ -42,10 +50,11 @@ AcountantWindow::AcountantWindow(QWidget *parent) :
 
         i++;
         }
-        bookList.display();
+        bookList->display();
 
         bookListFile.close();
-    }
+        }
+
     QHeaderView* header = ui->books_tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
     header->setStretchLastSection(true);
@@ -129,7 +138,7 @@ void AcountantWindow::on_addBook_btn_clicked()
     Book* newBook = new Book(title , author , publishYear , price);
 //    qDebug("newBook title : ");
 //    qDebug(newBook->getTitle().toStdString().c_str());
-    bookList.addEnd(newBook);
+    bookList->addEnd(newBook);
 //    bookList->display();
 
     ui->books_tableWidget->insertRow(ui->books_tableWidget->rowCount());
@@ -176,17 +185,20 @@ void AcountantWindow::on_back_btn_clicked()
 void AcountantWindow::on_removeBook_btn_clicked()
 {
     if(ui->books_tableWidget->rowCount()){
-        bookList.remove(bookList.getBookAt(ui->books_tableWidget->currentRow()));
+        QString rmBookStr = bookList->getBookAt(ui->books_tableWidget->currentRow())->getTitle();
+        bookList->remove(bookList->getBookAt(ui->books_tableWidget->currentRow()));
+        
          qDebug("remove");
-         bookList.display();
+         bookList->display();
          ui->books_tableWidget->removeRow(ui->books_tableWidget->currentRow());
          if(bookListFile.open(QIODevice::WriteOnly | QIODevice::Text)){
              QTextStream out(&bookListFile);
              out.setCodec("UTF-8");
-             for(int i = 0;i < bookList.getBooksNumber();i++){
-                 out<<bookList.getBookAt(i)->getTitle()<<";"<<bookList.getBookAt(i)->getAuthor()<<";"<<bookList.getBookAt(i)->getPublishYear()<<";"<<bookList.getBookAt(i)->getPrice()<<"\n";
+             for(int i = 0;i < bookList->getBooksNumber();i++){
+                 qDebug(QString::number(i).toStdString().c_str());
+                 out<<bookList->getBookAt(i)->getTitle()<<";"<<bookList->getBookAt(i)->getAuthor()<<";"<<bookList->getBookAt(i)->getPublishYear()<<";"<<bookList->getBookAt(i)->getPrice()<<"\n";
              }
-
+             ui->removeBookReply_label->setText("کتاب " + rmBookStr +  "از لیست کتاب ها حذف شد!");
              bookListFile.close();
          }
     }

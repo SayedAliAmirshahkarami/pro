@@ -3,7 +3,7 @@
 #include "bookClasses/book.h"
 #include "bookClasses/booklist.h"
 
-extern BookList bookList;
+extern BookList* bookList;
 
 class BookStack
 {
@@ -18,7 +18,7 @@ public:
     BookStack();
     void push(Book *book1);
     Book* pop();
-
+    Book* getTopBook();
 };
 
 #endif // BOOKSTACK_H

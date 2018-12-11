@@ -21,7 +21,7 @@ class AcountantWindow : public QMainWindow
 public:
     explicit AcountantWindow(QWidget *parent = 0);
     ~AcountantWindow();
-    
+
 private slots:
     void on_addBook_btn_clicked();
 

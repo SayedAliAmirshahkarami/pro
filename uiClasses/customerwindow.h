@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "customerenterwindow.h"
+#include "customer.h"
 
 namespace Ui {
 class CustomerWindow;
@@ -15,16 +16,14 @@ class CustomerWindow : public QMainWindow
 public:
     explicit CustomerWindow(QWidget *parent = 0);
     ~CustomerWindow();
-    BookStack bookStack;
+    Customer *customer;
     
 private slots:
     void on_back_btn_clicked();
 
-    void on_finish_btn_clicked();
-
     void on_addBookToStack_btn_clicked();
 
-
+    void on_finish_btn_clicked();
 
 private:
     Ui::CustomerWindow *ui;

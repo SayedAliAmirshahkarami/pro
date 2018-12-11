@@ -26,6 +26,7 @@ public:
     Book* getBookAt(int i);
     void display();
     int getBooksNumber();
+    bool isEmpty();
 };
 
 #endif // BOOKLIST_H

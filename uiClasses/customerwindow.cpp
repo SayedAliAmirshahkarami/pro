@@ -5,13 +5,14 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
+#include "../bookClasses/bookList.h"
 
 extern int type;
 extern QString nameStr;
 extern Queue maleQueue , femaleQueue;
 extern QFile maleQueueFile;
 extern QFile femaleQueueFile;
-extern BookList bookList;
+extern BookList *bookList;
 extern QFile bookListFile;
 
 CustomerWindow::CustomerWindow(QWidget *parent) :
@@ -21,6 +22,16 @@ CustomerWindow::CustomerWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->back_btn->setIcon(QIcon("../pro1/pics/back.png"));
 
+
+    customer = new Customer(nameStr , type);
+
+    bool wasEmpty;
+if(bookList->isEmpty()){
+    wasEmpty = true;
+}
+else{
+   wasEmpty = false;
+}
     if(bookListFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         QTextStream in(&bookListFile);
         int i = 0;
@@ -33,11 +44,11 @@ CustomerWindow::CustomerWindow(QWidget *parent) :
             QStringList bookInfo = line.split(';');
 //            for(int k = 0;k < 4;k++)
 //                qDebug(bookInfo.at(k).toStdString().c_str());
+            if(wasEmpty == true){
+              Book *newBook = new Book(bookInfo.at(0) , bookInfo.at(1) ,  bookInfo.at(2).toInt() , bookInfo.at(3).toInt());
 
-            Book *newBook = new Book(bookInfo.at(0) , bookInfo.at(1) ,  bookInfo.at(2).toInt() , bookInfo.at(3).toInt());
-
-            bookList.addEnd(newBook);
-
+               bookList->addEnd(newBook);
+            }
 
             ui->books_tableWidget->insertRow(i);
             QTableWidgetItem *item;
@@ -52,10 +63,11 @@ CustomerWindow::CustomerWindow(QWidget *parent) :
 
         i++;
         }
-        bookList.display();
+        bookList->display();
 
         bookListFile.close();
     }
+
     QHeaderView* header = ui->books_tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
     header->setStretchLastSection(true);
@@ -75,11 +87,50 @@ void CustomerWindow::on_back_btn_clicked()
     cstEnterWindow->showNormal();
 }
 
+
+
+void CustomerWindow::on_addBookToStack_btn_clicked()
+{
+    if(ui->books_tableWidget->rowCount()){
+
+        customer->getBookStack()->push(bookList->getBookAt(ui->books_tableWidget->currentRow()));
+
+        QString rmBookStr = bookList->getBookAt(ui->books_tableWidget->currentRow())->getTitle();
+        bookList->remove(bookList->getBookAt(ui->books_tableWidget->currentRow()));
+         qDebug("remove");
+         bookList->display();
+         ui->books_tableWidget->removeRow(ui->books_tableWidget->currentRow());
+         if(bookListFile.open(QIODevice::WriteOnly | QIODevice::Text)){
+             QTextStream out(&bookListFile);
+             out.setCodec("UTF-8");
+             for(int i = 0;i < bookList->getBooksNumber();i++){
+                 qDebug(QString::number(i).toStdString().c_str());
+                 out<<bookList->getBookAt(i)->getTitle()<<";"<<bookList->getBookAt(i)->getAuthor()<<";"<<bookList->getBookAt(i)->getPublishYear()<<";"<<bookList->getBookAt(i)->getPrice()<<"\n";
+             }
+             ui->addToStackReply_label->setText(" کتاب " + rmBookStr +  " به سبد خرید اضافه شد!");
+             
+             ui->bookStack_tableWidget->insertRow(ui->bookStack_tableWidget->rowCount());
+
+                 QTableWidgetItem *item = new QTableWidgetItem(customer->getBookStack()->getTopBook()->getTitle());
+                 ui->bookStack_tableWidget->setItem(ui->bookStack_tableWidget->rowCount() - 1 , 0 , item);
+                 item = new QTableWidgetItem(customer->getBookStack()->getTopBook()->getAuthor());
+                 ui->bookStack_tableWidget->setItem(ui->bookStack_tableWidget->rowCount() - 1 , 1 , item);
+                 item = new QTableWidgetItem(QString::number(customer->getBookStack()->getTopBook()->getPublishYear()));
+                 ui->bookStack_tableWidget->setItem(ui->bookStack_tableWidget->rowCount() - 1 , 2 , item);
+                 item = new QTableWidgetItem(QString::number(customer->getBookStack()->getTopBook()->getPrice()));
+                 ui->bookStack_tableWidget->setItem(ui->bookStack_tableWidget->rowCount() - 1 , 3 , item);
+
+                 QHeaderView* header = ui->bookStack_tableWidget->horizontalHeader();
+                 header->setSectionResizeMode(QHeaderView::Stretch);
+                 header->setStretchLastSection(true);
+
+             bookListFile.close();
+         }
+    }
+}
+
 void CustomerWindow::on_finish_btn_clicked()
 {
-
-
-    Customer *customer = new Customer(nameStr , type);
     if(type == 1){
         maleQueue.push_rear(customer);
 
@@ -91,26 +142,5 @@ void CustomerWindow::on_finish_btn_clicked()
     }
     else if(type == 0){
         femaleQueue.push_rear(customer);
-    }
-
-
-}
-
-void CustomerWindow::on_addBookToStack_btn_clicked()
-{
-    if(ui->books_tableWidget->rowCount()){
-        bookList.remove(bookList.getBookAt(ui->books_tableWidget->currentRow()));
-         qDebug("remove");
-         bookList.display();
-         ui->books_tableWidget->removeRow(ui->books_tableWidget->currentRow());
-         if(bookListFile.open(QIODevice::WriteOnly | QIODevice::Text)){
-             QTextStream out(&bookListFile);
-             out.setCodec("UTF-8");
-             for(int i = 0;i < bookList.getBooksNumber();i++){
-                 out<<bookList.getBookAt(i)->getTitle()<<";"<<bookList.getBookAt(i)->getAuthor()<<";"<<bookList.getBookAt(i)->getPublishYear()<<";"<<bookList.getBookAt(i)->getPrice()<<"\n";
-             }
-
-             bookListFile.close();
-         }
     }
 }

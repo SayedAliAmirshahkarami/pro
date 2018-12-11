@@ -45,26 +45,13 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>530</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>اتمام خرید</string>
-    </property>
-   </widget>
    <widget class="QTableWidget" name="books_tableWidget">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>0</y>
-      <width>581</width>
-      <height>321</height>
+      <x>230</x>
+      <y>60</y>
+      <width>561</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="font">
@@ -95,17 +82,12 @@
       <string>قیمت</string>
      </property>
     </column>
-    <column>
-     <property name="text">
-      <string>اضافه به سبد</string>
-     </property>
-    </column>
    </widget>
    <widget class="QFrame" name="remove_frame">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>330</y>
+      <x>10</x>
+      <y>60</y>
       <width>211</width>
       <height>131</height>
      </rect>
@@ -170,6 +152,125 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+   </widget>
+   <widget class="QTableWidget" name="bookStack_tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>350</y>
+      <width>561</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <column>
+     <property name="text">
+      <string>نام کتاب</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>نویسنده</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>سال انتشار</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>قیمت</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="finish_btn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>189</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>اتمام خرید</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="bookStack_label">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>300</y>
+      <width>541</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB Demi</family>
+      <pointsize>32</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 170, 0);</string>
+    </property>
+    <property name="text">
+     <string>سبدخرید</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="bookStack_label_2">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>0</y>
+      <width>541</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Berlin Sans FB Demi</family>
+      <pointsize>32</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 170, 0);</string>
+    </property>
+    <property name="text">
+     <string>کتاب های موجود در کتاب فروشی</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

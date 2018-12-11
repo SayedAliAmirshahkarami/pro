@@ -1,7 +1,7 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 #include <QString>
-
+#include "bookstack.h"
 
 
 class Customer
@@ -9,6 +9,7 @@ class Customer
 private:
     QString name;
     int type;
+    BookStack *bookStack;
     Customer *next;
 public:
     Customer (QString name,int type);
@@ -16,9 +17,11 @@ public:
     Customer * getNext();
     QString getName();
     int getType();
+    BookStack* getBookStack();
     void setType(int);
     void setName(QString);
     void setNext(Customer*Customer);
+
 };
 
 #endif // CUSTOMER_H

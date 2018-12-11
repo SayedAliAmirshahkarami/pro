@@ -40,7 +40,6 @@ Book* BookList::getBookAt(int i){
 
 vector<Book*> BookList::find(QString author="" , QString title="" , int publishYear = -1, int price = -1){
 
-//    BookList *foundedBooks = new BookList;
     vector<Book*>foundedBooks;
     foundedBooks.clear();
     Book *currentBook = lastBook->getNext();
@@ -229,6 +228,8 @@ void BookList::display(){
 }
 
 int BookList::remove(Book *rmBook){
+    qDebug("count : ");
+    qDebug(QString::number(count).toStdString().c_str());
     if(!lastBook){
         qDebug("list is empty can't remove...");
       return 0;
@@ -270,4 +271,10 @@ int BookList::remove(Book *rmBook){
      return 0;
 }
 
-                                                                                                                                                                                                                                                                                                                                                                                    
+bool BookList::isEmpty(){
+    if(lastBook == NULL){
+        return true;
+    }
+    else
+      return false;
+}                                                                                                                                                                                                                                                                                                                                                                                    

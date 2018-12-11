@@ -7,7 +7,7 @@
 Queue maleQueue , femaleQueue;
 QFile maleQueueFile("Queue/maleQueue.txt");
 QFile femaleQueueFile("Queue/femaleQueue.txt");
-BookList bookList;
+BookList *bookList;
 QFile bookListFile("BookList/bookList.txt");
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->customerEnter_pbtn->setIcon(QIcon("../pro1/pics/customer.png"));
     ui->accountantEnter_pbtn->setIcon(QIcon("../pro1/pics/acountant.png"));
+
+    bookList = new BookList();
 
     QDir bookListDir;
     bookListDir.mkdir("BookList");

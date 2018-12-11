@@ -9,7 +9,7 @@ BookStack::BookStack()
 
 void BookStack::push(Book *book1)
 {
-if(count == bookList.getBooksNumber())
+if(count == bookList->getBooksNumber())
         cout<<"stack is full";
 else
 {
@@ -45,4 +45,8 @@ else
     count--;
     return book1;
 }
+}
+
+Book* BookStack::getTopBook(){
+    return topBook;
 }
